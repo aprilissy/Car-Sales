@@ -3,7 +3,8 @@ import { connect } from 'react-redux'
 import AdditionalFeature from './AdditionalFeature';
 import {addToPurchase} from '../actions/updatePurchaseActions'
 
-const AdditionalFeatures = props => {
+const AdditionalFeatures = props => { console.log('props',props);
+
   return (
     <div className="content">
       <h4>Additional Features</h4>

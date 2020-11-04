@@ -9,7 +9,12 @@ import rootReducer from './reducers'
 import 'bulma/css/bulma.css';
 import './styles.scss';
 
-const store = createStore(rootReducer)
+import { devToolsEnhancer } from 'redux-devtools-extension';
+
+const store = createStore(rootReducer,
+devToolsEnhancer(
+  // Specify custom devTools options
+));
 
 const rootElement = document.getElementById('root');
 ReactDOM.render(

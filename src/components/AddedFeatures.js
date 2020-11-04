@@ -4,12 +4,14 @@ import {removeFromPurchase} from '../actions/updatePurchaseActions'
 import AddedFeature from './AddedFeature';
 
 const AddedFeatures = props => {
+  const featuresList = Object.values(props.car.features)
+  console.log("ADDED FEATURES: ", props)
   return (
     <div className="content">
       <h6>Added features:</h6>
-      {props.car.features.length ? (
+      {featuresList.length ? (
         <ol type="1">
-          {props.car.features.map(item => (
+          {featuresList.map(item => (
             <AddedFeature key={item.id} feature={item} removeFromPurchase={props.removeFromPurchase} />
           ))}
         </ol>

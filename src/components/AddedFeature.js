@@ -1,19 +1,16 @@
-import React, { useReducer } from 'react';
-import { removeFromPurchase } from '../actions/updatePurchaseActions'
-
+import React from 'react'
 
 const AddedFeature = props => {
  
-  // const removeAddedFeature = () => {
-  //   (removeFromPurchase())
-  // }
+  const removeAddedFeature = () => {
+    props.removeFromPurchase({
+      id: props.feature.id
+    })
+  }
   
   return (
     <li>
-      {/* Add an onClick to run a function to remove a feature 
-      onClick={removeFromPurchase}
-      */}
-      <button className="button" >X</button>
+      <button className="button" onClick={removeAddedFeature}>X</button>
       {props.feature.name}
     </li>
   );

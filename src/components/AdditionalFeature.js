@@ -1,10 +1,9 @@
 import React from 'react';
-import {addToPurchase} from '../actions/updatePurchaseActions'
 
 const AdditionalFeature = props => {
 
   const addFeature = () => {
-    addToPurchase({
+    props.addToPurchase({
       id:props.feature.id,
       name: props.feature.name,
       price: props.feature.price

@@ -1,6 +1,7 @@
 import { ADD_FEATURE, REMOVE_ADDED_FEATURE } from '../actions/updatePurchaseActions'
 
 const initialState = {
+  additionalPrice: 0,
   car: {
     price: 26395,
     name: '2019 Ford Mustang',
@@ -16,29 +17,37 @@ const initialState = {
   ]
 }
 
+const additionalPriceCalc = features => Object.values(features).reduce((acc, val) => acc + val.price, 0)
+
 export const featuresReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_FEATURE:
+
       return{
         ...state,
+        additionalPrice: additionalPriceCalc({
+          ...state.car.features, 
+          [action.payload.id]: action.payload
+        }),
         car:{
           ...state.car,
-          features:[
-            ...state.car.features, action.payload
-          ]
+          features:{
+            ...state.car.features, 
+            [action.payload.id]: action.payload
+          }
         }
       }
 
-    // case REMOVE_ADDED_FEATURE:
-    //   return {
-    //     ...state,
-    //     car:{
-    //       ...state.car, 
-    //       features:[
-    //         state.car.features.filter(feature => )
-    //       ]
-    //     }
-    //   }
+    case REMOVE_ADDED_FEATURE:
+      const temp = {
+        ...state,
+        car: {
+          ...state.car
+        }
+      }
+      delete temp.car.features[action.payload.id]
+      temp.additionalPrice = additionalPriceCalc(temp.car.features)
+      return temp
 
     default:
       return state
