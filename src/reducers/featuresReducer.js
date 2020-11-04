@@ -1,3 +1,5 @@
+import { ADD_FEATURE, REMOVE_ADDED_FEATURE } from '../actions/updatePurchaseActions'
+
 const initialState = {
   car: {
     price: 26395,
@@ -16,19 +18,31 @@ const initialState = {
 
 export const featuresReducer = (state = initialState, action) => {
   switch (action.type) {
-    // case ADD_FEATURE:
-    //   return{
+    case ADD_FEATURE:
+      return{
+        ...state,
+        car:{
+          ...state.car,
+          features:[
+            ...state.car.features, action.payload
+          ]
+        }
+      }
+
+    // case REMOVE_ADDED_FEATURE:
+    //   return {
     //     ...state,
-    //     features: [
-    //       ...state.features,
-    //       {
-    //       // id: ,
-    //       // name: ,
-    //       // price:
-    //       }
-    //     ]
+    //     car:{
+    //       ...state.car, 
+    //       features:[
+    //         state.car.features.filter(feature => )
+    //       ]
+    //     }
     //   }
+
     default:
       return state
   }
 }
+
+export default featuresReducer
